@@ -1,8 +1,10 @@
 package main
 
 import (
-	"github.com/boydeptrai/go-pattern/builder"
 	"fmt"
+
+	"github.com/boydeptrai/go-pattern/abstractfactory"
+	"github.com/boydeptrai/go-pattern/builder"
 )
 
 func main() {
@@ -11,6 +13,19 @@ func main() {
 
 	director := builder.NewDirector(normalBuilder)
 	normalHouse := director.BuildeHouse()
+
+	//Abstract Factory
+	adidasFactory := abstractfactory.GetSportsFactory("adidas")
+	adidasShoe := adidasFactory.MakeShoe()
+	printShoeDetails(adidasShoe)
+	adidasShort := adidasFactory.MakeShort()
+	printShoeDetails(adidasShort)
+
+	nikeFactory := abstractfactory.GetSportsFactory("nike")
+	nikeShoe := nikeFactory.MakeShoe()
+	printShoeDetails(nikeShoe)
+	nikeShort := nikeFactory.MakeShort()
+	printShortDetails(nikeShort)
 
 	fmt.Printf("Normal House Door Type: %s\n", normalHouse.GetDoorType())
 	fmt.Printf("Normal House Window Type:%s\n", normalHouse.GetWindowType())
@@ -21,4 +36,14 @@ func main() {
     fmt.Printf("\nIgloo House Door Type: %s\n", iglooHouse.GetDoorType())
 	fmt.Printf("Igloo House Window Type: %s\n", iglooHouse.GetWindowType())
 	fmt.Printf("Igloo House Num Floor: %d\n", iglooHouse.GetNumFloor())
+}
+
+func printShoeDetails(s abstractfactory.IShoe) {
+	fmt.Printf("Logo: %s\n", s.GetLogo())
+	fmt.Printf("Size: %d\n", s.GetSize())
+}
+
+func printShortDetails(s abstractfactory.IShort) {
+	fmt.Printf("Logo: %s\n", s.GetLogo())
+	fmt.Printf("Size: %d\n", s.GetSize())
 }
