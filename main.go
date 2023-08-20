@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-
+    c "github.com/boydeptrai/go-pattern/chainofresponsibility"
 	p "github.com/boydeptrai/go-pattern/prototype"
 	"github.com/boydeptrai/go-pattern/abstractfactory"
 	"github.com/boydeptrai/go-pattern/builder"
@@ -58,6 +58,21 @@ func main() {
     fmt.Printf("\nIgloo House Door Type: %s\n", iglooHouse.GetDoorType())
 	fmt.Printf("Igloo House Window Type: %s\n", iglooHouse.GetWindowType())
 	fmt.Printf("Igloo House Num Floor: %d\n", iglooHouse.GetNumFloor())
+
+	// chainofresponsibility
+	cashier := &c.Cashier{}
+
+	medical := &c.Medical{}
+	medical.SetNext(cashier)
+
+	doctor := &c.Doctor{}
+	doctor.SetNext(medical)
+
+	reception := &c.Reception{}
+	reception.SetNext(doctor)
+
+	patient := &c.Patient{Name : "Tuan"}
+	reception.Execute(patient)
 }
 
 func printShoeDetails(s abstractfactory.IShoe) {

@@ -20,3 +20,13 @@
   + Clone
 - Concrete prototype 1 - File
 - Concrete prototype 2 - Folder
+
+/* Chain of responsibility*/
+- Client -> patient
+- Handler interface -> Department
+  + Execute
+  + SetNext
+- Concrete handler 1 -> Reception
+- Concrete handler 2 -> Doctor
+- Concrete handler 3 -> Medicine
+- Concrete handler 4 -> Cashier
