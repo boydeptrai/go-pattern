@@ -14,3 +14,9 @@
 - Abstract Factory Interface 2 Nike
 - Concrete Factory 1
 - Concrete Factory 2
+
+/*Prototype*/
+- Prototype interface
+  + Clone
+- Concrete prototype 1 - File
+- Concrete prototype 2 - Folder

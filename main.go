@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 
+	p "github.com/boydeptrai/go-pattern/prototype"
 	"github.com/boydeptrai/go-pattern/abstractfactory"
 	"github.com/boydeptrai/go-pattern/builder"
 )
@@ -26,6 +27,27 @@ func main() {
 	printShoeDetails(nikeShoe)
 	nikeShort := nikeFactory.MakeShort()
 	printShortDetails(nikeShort)
+    
+
+	// Prototype
+	file1 := &p.File{Name: "File 1"}
+	file2 := &p.File{Name: "File 2"}
+	file3 := &p.File{Name: "File 3"}
+	folder1 := &p.Folder{
+		Childrens: []p.INode{file1},
+		Name: "Folder 1",
+	}
+	folder2 := &p.Folder {
+		Childrens: []p.INode{folder1, file2, file3},
+		Name: "Folder 2",
+	}
+
+	fmt.Println("\n Printing for Folder 2")
+	folder2.Print(" ")
+	cloneFolder := folder2.Clone()
+	fmt.Println("\nPrinting for close folder 2")
+	cloneFolder.Print("  ")
+
 
 	fmt.Printf("Normal House Door Type: %s\n", normalHouse.GetDoorType())
 	fmt.Printf("Normal House Window Type:%s\n", normalHouse.GetWindowType())
