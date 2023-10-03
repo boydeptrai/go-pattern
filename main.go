@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	m "github.com/boydeptrai/go-pattern/mediator"
     c "github.com/boydeptrai/go-pattern/chainofresponsibility"
 	p "github.com/boydeptrai/go-pattern/prototype"
 	"github.com/boydeptrai/go-pattern/abstractfactory"
@@ -73,6 +74,18 @@ func main() {
 
 	patient := &c.Patient{Name : "Tuan"}
 	reception.Execute(patient)
+
+	//mediator
+	stationManager := m.NewStationManager()
+	passengerTrain := &m.PassengerTrain {
+		Mediator: stationManager,
+	}
+	goodTrain := &m.GoodTrain {
+		Mediator: stationManager,
+	}
+	passengerTrain.RequestArrival()
+	goodTrain.RequestArrival()
+	passengerTrain.Departure()
 }
 
 func printShoeDetails(s abstractfactory.IShoe) {
